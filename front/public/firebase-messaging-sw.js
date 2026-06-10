@@ -1,34 +1,20 @@
 
-
-// eslint-disable-next-line no-undef
 importScripts('https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js');
-// eslint-disable-next-line no-undef
 importScripts('https://www.gstatic.com/firebasejs/8.4.3/firebase-messaging.js');
 
-
-// ====== editar aqui ======
-
 var firebaseConfig = {
-    apiKey: "AIzaSyCOLYzLg7c_u54qcQ1MYE9ARSvBjx8N6kk",
-    authDomain: "tarkan-366b8.firebaseapp.com",
-    projectId: "tarkan-366b8",
-    storageBucket: "tarkan-366b8.appspot.com",
-    messagingSenderId: "1052991243105",
-    appId: "1:1052991243105:web:80257151907fce5703bb20",
-    measurementId: "G-LR8EBRYBZJ"
+    apiKey: '__VUE_APP_FIREBASE_API_KEY__',
+    authDomain: '__VUE_APP_FIREBASE_AUTH_DOMAIN__',
+    projectId: '__VUE_APP_FIREBASE_PROJECT_ID__',
+    storageBucket: '__VUE_APP_FIREBASE_STORAGE_BUCKET__',
+    messagingSenderId: '__VUE_APP_FIREBASE_MESSAGING_SENDER_ID__',
+    appId: '__VUE_APP_FIREBASE_APP_ID__',
+    measurementId: '__VUE_APP_FIREBASE_MEASUREMENT_ID__'
 }
 
-
-
-// === não mecher depois daqui ====
-
-// eslint-disable-next-line no-undef
 firebase.initializeApp(firebaseConfig)
 
-// eslint-disable-next-line no-undef
 const messaging  = firebase.messaging()
 messaging.onBackgroundMessage((msg) => {
     console.log("tesing sevice worker",msg)
-    // Customize notification here
 });
-

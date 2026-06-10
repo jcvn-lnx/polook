@@ -1,5 +1,30 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+class EnvReplacePlugin {
+  apply(compiler) {
+    compiler.hooks.emit.tapAsync('EnvReplacePlugin', (compilation, callback) => {
+      const files = ['push.js', 'firebase-messaging-sw.js'];
+      files.forEach(filename => {
+        if (compilation.assets[filename]) {
+          let source = compilation.assets[filename].source();
+          if (source instanceof Buffer) {
+            source = source.toString('utf8');
+          }
+          Object.keys(process.env).forEach(key => {
+            if (key.startsWith('VUE_APP_FIREBASE_')) {
+              source = source.split(`__${key}__`).join(process.env[key]);
+            }
+          });
+          compilation.assets[filename] = {
+            source: () => source,
+            size: () => Buffer.byteLength(source, 'utf8')
+          };
+        }
+      });
+      callback();
+    });
+  }
+}
 
 
 module.exports = {
@@ -33,7 +58,8 @@ module.exports = {
 
     configureWebpack:{
         plugins: [
-            new BundleAnalyzerPlugin()
+            new BundleAnalyzerPlugin(),
+            new EnvReplacePlugin()
         ],
         resolve: {
             alias: {

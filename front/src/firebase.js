@@ -1,11 +1,9 @@
 
-
 import "firebase/app"
 import "firebase/messaging"
 import firebase from "firebase/compat";
 
 let m = false;
-
 
 function isBadIosXX() {
 	var regex = /(iPhone|iPad|iPod);[^OS]*OS (\d)/;
@@ -15,16 +13,22 @@ function isBadIosXX() {
 	return true;
 }
 
-// eslint-disable-next-line no-undef
 console.log(isBadIosXX());
 
-// eslint-disable-next-line no-undef
+const firebaseConfig = {
+	apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+	authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+	storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.VUE_APP_FIREBASE_APP_ID,
+	measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID,
+}
+
 if(window.location.protocol==='https:' && !isBadIosXX()){
 
-	// eslint-disable-next-line no-undef
 	firebase.initializeApp(firebaseConfig)
 	m = firebase.messaging();
-
 
 }
 export default m
