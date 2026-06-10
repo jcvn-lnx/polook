@@ -415,7 +415,7 @@ const showGeofences = ref(true);
 const availableMaps = ref([
 
   /* IFTRUE_myFlag */
-  {id: 1, name: 'MapBox',url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=VUE_APP_MAPBOX_TOKEN'},
+  {id: 1, name: 'MapBox',url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + process.env.VUE_APP_MAPBOX_TOKEN},
   /* FITRUE_myFlag */
   {id: 5, name: 'OpenStreetMap',url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'},
 
