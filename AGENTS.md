@@ -6,17 +6,12 @@ Guia para agentes de IA neste repositório. Abaixo do "o que um agente provavelm
 
 **Tarkan** — plataforma white-label de rastreamento GPS/frota.
 - `front/` — Vue 3 SPA/PWA via **Vue CLI 4.5** (webpack). Setup: `yarn install`.
-- `tarkan-api/` — Laravel 8 / PHP ^7.3|^8.0, proxy/middleware sobre Traccar (**repositório git separado**, branch `master`).
+- `tarkan-api/` — Laravel 8 / PHP ^7.3|^8.0, proxy/middleware sobre Traccar.
 - `tarkan.sql` — dump MySQL do banco próprio da API.
-
-## Multi-repo
-
-- `tarkan-api/` é um repo git separado (não submodule): mudanças de código nele devem ser commitadas no repo dele.
-- `front/` e `.planning/` ficam no repo raiz. Commits mistos (raiz + tarkan-api) exigem commit separado em cada repo.
 
 ## Fatos críticos (não óbvios de filename)
 
-- **Sem `.gitignore` na raiz.** Cuidado para nunca commitar: `tarkan-0906.tar` (~615 MB), `tarkan.sql`, `front/dist/`, `front/test/*.umd*.js`, `tarkan-desktop/`, `html/`, `desktop.ini`.
+- **Cuidado para nunca commitar:** `tarkan-0906.tar` (~615 MB), `tarkan.sql`, `front/dist/`, `front/test/*.umd*.js`, `tarkan-desktop/`, `html/`, `desktop.ini`.
 - **Dois lockfiles no front:** `yarn.lock` + `package-lock.json` coexistem. `yarn.lock` é o source of truth (README usa `yarn install`). `package-lock.json` é resquício — não atualizar.
 - **Builds mobile:** entrypoints separados (`src/main-mobile.js`, `src/main-mobile-client.js`). Comandos: `yarn mbuild` (build mobile), `yarn mserve` / `yarn mcserve` (dev server mobile).
 - **Sem CI/CD:** Não há `.github/` nem workflows de CI. Nada roda automaticamente.
@@ -56,7 +51,7 @@ Variáveis Traccar (`TARKAN_HOST`, `TARKAN_USERNAME`, `TARKAN_PASSWORD`) não es
 | `yarn mserve` | Dev server mobile |
 | `yarn build` | Build produção desktop |
 | `yarn mbuild` | Build produção mobile (`--dest=dist-mobile`) |
-| `yarn lint` | ESLint (vue3-essential + eslint:recommended) |
+| `yarn lint` | ESLint (vue3-essential + eslint:recommended) — build falha se houver erro |
 
 **Não há test runner no front ainda.** `npx vitest` só funcionará após instalação e configuração (planejado para Fase 1).
 

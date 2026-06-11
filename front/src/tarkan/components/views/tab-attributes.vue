@@ -44,7 +44,7 @@
     "
   >
     <Paginate :items="attributesFiltered" :per-page="15" v-model="currentPage">
-      <template v-slot="{ item, index }">
+      <template v-slot="{ item }">
         <div style="display: flex; border-bottom: silver 1px dotted">
           <div style="padding: 7px; flex: 1">
             {{ $t("attribute." + item.key) }}
